@@ -1,3 +1,41 @@
+<!DOCTYPE html>
 <html>
-  <h1>HI</h1>
+<head>
+    <title>Login Page</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="loginForm" onsubmit="return loginUser(event)">
+        <label for="username">Username:</label>
+        <input type="text" id="username" required><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" required><br>
+        <input type="submit" value="Login">
+    </form>
+
+    <script>
+        function loginUser(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Make an AJAX request to the backend PHP script for login verification
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'login.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        alert('Login successful! Welcome, ' + username);
+                    } else {
+                        alert('Incorrect username or password.');
+                    }
+                }
+            };
+            xhr.send('username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password));
+            return false;
+        }
+    </script>
+</body>
 </html>
