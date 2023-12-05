@@ -9,8 +9,8 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>hello-world</name>
-  <description>Demo project for Spring Boot</description>
+  <name>login</name>
+  <description>Test</description>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
